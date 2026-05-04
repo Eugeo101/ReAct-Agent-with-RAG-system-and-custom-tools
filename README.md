@@ -1,4 +1,4 @@
-# ReAct Agent with Custom Tools & RAG System
+# ReAct Agent with RAG System & Custom Tools
 ## 1. Overview
 This project implements a production-ready **ReAct (Reasoning + Acting) Agent** powered by **Qwen3-32B** via Groq, built entirely on the modern LangGraph stack. The agent dynamically selects from a set of heterogeneous tools — including a RAG pipeline over a PDF, a live weather API, Wikipedia search, and a full Swagger-generated API toolkit — to answer complex, multi-step user queries.
 
