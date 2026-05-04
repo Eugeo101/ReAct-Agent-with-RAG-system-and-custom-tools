@@ -39,26 +39,14 @@ Implemented and registered the following tools alongside the Swagger and RAG too
 ### 2.6 Memory
 - Integrated **`MemorySaver`** (LangGraph checkpointer) for persistent conversation memory across turns.
 - Memory is scoped per user via `thread_id` in the config — enabling multi-user session isolation.
-
-### 2.7 Observability
-- Configured **LangSmith** tracing via `LANGCHAIN_TRACING_V2` env vars.
-- All agent runs — LLM calls, tool invocations, results, token usage, and latency — are visible in the LangSmith dashboard under the configured project.
-
 ---
 
 ## 3. Tech Stack
 
-- Python
+- LangChain (`ChatGroq`, document loaders, ChromaDB, `@tool`, `StructuredTool`, `SystemMessage`, `ToolMessage`)
 - LangGraph (`create_react_agent`, `MemorySaver`)
-- LangChain Core (`@tool`, `StructuredTool`, `SystemMessage`, `ToolMessage`)
-- LangChain Groq (`ChatGroq`)
-- LangChain Community (document loaders, ChromaDB, HuggingFace embeddings)
-- ChromaDB
-- HuggingFace Sentence Transformers (`all-MiniLM-L6-v2`)
-- Groq API (Qwen3-32B)
-- LangSmith (tracing & observability)
-- Pydantic v2
-- Requests
+- ChromaDB (vector database)
+- Pydantic v2 (for validation)
 
 ---
 
@@ -86,7 +74,7 @@ User Query
  MemorySaver (thread_id scoped)
      │
      ▼
- Final Answer + LangSmith Trace
+ Final Answer
 ```
 
 ---
@@ -99,20 +87,7 @@ LangChain's built-in `OpenAPIToolkit` only supports OpenAPI 3.x. A custom parser
 ### 5.2 Tool Routing via Docstrings
 The agent's tool selection is driven entirely by tool docstrings, not the system prompt. The system prompt focuses only on persona, rules, and edge cases — keeping it short and maintainable.
 
-### 5.3 Modern Stack Only
-All deprecated LangChain patterns were replaced:
-
-| Deprecated | Replaced By |
-|---|---|
-| `AgentExecutor` | `create_react_agent` |
-| `OpenAIFunctionsAgentOutputParser` | `llm.bind_tools()` |
-| `ConversationBufferMemory` | `MemorySaver` + `thread_id` |
-| `MessagesPlaceholder(agent_scratchpad)` | LangGraph state |
-| `format_to_openai_functions` | `bind_tools()` |
-| `RunnablePassthrough.assign` | LangGraph edges |
-| `AgentFinish` | `response.tool_calls` check |
-
 ---
 
 ## 6. Conclusion
-This project demonstrates a full-stack, production-aligned ReAct agent that integrates heterogeneous tool types — REST APIs, RAG, and live data sources — under a unified LangGraph architecture. It intentionally avoids all deprecated LangChain patterns in favor of the current recommended stack, with observability and multi-user memory built in from the ground up.
+This project demonstrates a full-stack, production-aligned ReAct agent that integrates heterogeneous tool types — REST APIs, RAG, and live data sources — under a unified LangGraph architecture. It intentionally avoids all deprecated LangChain patterns in favor of the current recommended stack, with multi-user memory built in from the ground up.
