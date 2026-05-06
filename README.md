@@ -71,16 +71,10 @@ Implemented and registered the following tools alongside the Swagger and RAG too
 ## 3. Tech Stack
 
 - Python
-- LangGraph (`create_react_agent`, `MemorySaver`)
-- LangChain Core (`@tool`, `StructuredTool`, `SystemMessage`, `ToolMessage`)
-- LangChain Groq (`ChatGroq`)
-- LangChain Community (document loaders, ChromaDB, HuggingFace embeddings)
-- ChromaDB
+- LangGraph (`create_react_agent`, `MemorySaver`, `@tool`, `StructuredTool`, `SystemMessage`, `ToolMessage`)
 - HuggingFace Sentence Transformers (`all-MiniLM-L6-v2`)
-- Groq API (Qwen3-32B)
-- LangSmith (tracing & observability)
+- ChromaDB
 - Pydantic v2
-- Requests
 - python-dotenv (secure API key management via `.env`)
 
 ---
